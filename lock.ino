@@ -18,19 +18,22 @@ Servo mServo;
 bool isDeviceConnected = false;
 uint16_t isUnlock = false;
 
+const int MIN_ANGLE = 1;
+const int MAX_ANGLE = 179;
+const int wait_us = 5;
 void lock(){
   Serial.println("lock");
-  for(int deg = 0; deg < 175; ++deg){
+  for(int deg = MIN_ANGLE; deg < MAX_ANGLE; ++deg){
     mServo.write(deg);
-    delay(100);
+    delay(wait_us);
   }
   isUnlock = false;
 }
 void unlock(){
   Serial.println("unlock");
-  for(int deg = 0; deg > 0; --deg){
+  for(int deg = MAX_ANGLE; deg > MIN_ANGLE; --deg){
     mServo.write(deg);
-    delay(100);
+    delay(wait_us);
   }
   isUnlock = true; 
 }
@@ -62,7 +65,7 @@ class MyCallbacks: public BLECharacteristicCallbacks {
 BLEServer *pServer;
 void setup() {
   Serial.begin(115200);
-  mServo.attach(pinS, 500, 2400);
+  mServo.attach(pinS, 544, 2400);
 
   BLEDevice::init("LoESP32");
   pServer = BLEDevice::createServer();
