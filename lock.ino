@@ -20,12 +20,18 @@ uint16_t isUnlock = false;
 
 void lock(){
   Serial.println("lock");
-  mServo.write(175);
+  for(int deg = 0; deg < 175; ++deg){
+    mServo.write(deg);
+    delay(100);
+  }
   isUnlock = false;
 }
 void unlock(){
   Serial.println("unlock");
-  mServo.write(5); 
+  for(int deg = 0; deg > 0; --deg){
+    mServo.write(deg);
+    delay(100);
+  }
   isUnlock = true; 
 }
 class MyServerCallbacks : public BLEServerCallbacks{
