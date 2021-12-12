@@ -20,12 +20,12 @@ uint16_t isUnlock = false;
 
 void lock(){
   Serial.println("lock");
-  mServo.write(180);
+  mServo.write(175);
   isUnlock = false;
 }
 void unlock(){
   Serial.println("unlock");
-  mServo.write(0); 
+  mServo.write(5); 
   isUnlock = true; 
 }
 class MyServerCallbacks : public BLEServerCallbacks{
@@ -82,8 +82,8 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   if(isDeviceConnected == false){
-    delay(500);
+    delay(2000);
     pServer->startAdvertising();
   }
-  delay(2000);
+  delay(20);
 }
