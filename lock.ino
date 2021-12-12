@@ -6,7 +6,7 @@
 #include <BLEDevice.h>
 #include <BLEUtils.h>
 #include <BLEServer.h>
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 // See the following for generating UUIDs:
 // https://www.uuidgenerator.net/
@@ -56,7 +56,7 @@ class MyCallbacks: public BLECharacteristicCallbacks {
 BLEServer *pServer;
 void setup() {
   Serial.begin(115200);
-  mServo.attach(pinS);
+  mServo.attach(pinS, 500, 2400);
 
   BLEDevice::init("LoESP32");
   pServer = BLEDevice::createServer();
