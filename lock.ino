@@ -13,7 +13,7 @@
 
 #define SERVICE_UUID        "4fafc201-1fb5-459e-8fcc-c5c9c331914c"
 #define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a9"
-static const int pinS = 18;
+static const int pinS = 25;
 Servo mServo;
 bool isDeviceConnected = false;
 uint16_t isUnlock = false;
