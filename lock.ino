@@ -23,12 +23,24 @@ const int MAX_ANGLE = 179;
 const int wait_us = 5;
 void lock(){
   Serial.println("lock");
-  mServo.write(MAX_ANGLE);
+
+  cli();
+  digitalWrite(0, 1);
+  delayMicroseconds(2400); 
+  digitalWrite(0, 0);
+  sei();
+
   isUnlock = false;
 }
 void unlock(){
   Serial.println("unlock");
-  mServo.write(MIN_ANGLE);
+
+  cli();
+  digitalWrite(0, 1);
+  delayMicroseconds(500); 
+  digitalWrite(0, 0);
+  sei();
+
   isUnlock = true; 
 }
 class MyServerCallbacks : public BLEServerCallbacks{
@@ -59,7 +71,7 @@ class MyCallbacks: public BLECharacteristicCallbacks {
 BLEServer *pServer;
 void setup() {
   Serial.begin(115200);
-  mServo.attach(pinS, 544, 2400);
+  //mServo.attach(pinS);
 
   BLEDevice::init("LoESP32");
   pServer = BLEDevice::createServer();
