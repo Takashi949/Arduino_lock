@@ -6,6 +6,7 @@
         "thread": "cpp",
         "xhash": "cpp",
         "xlocmon": "cpp",
-        "xlocnum": "cpp"
+        "xlocnum": "cpp",
+        "ostream": "cpp"
     }
 }
